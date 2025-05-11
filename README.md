@@ -17,7 +17,7 @@
 ## 🚀 Installation
 
 ```bash
-git clone https://github.com/your-username/lzy-cli.git
+git clone https://github.com/ricardoborges/lzy-cli.git
 cd lzy-cli
 pip install -e .
 ```
