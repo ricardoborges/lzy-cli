@@ -100,11 +100,3 @@ python lzy/cli.py "delete all .DS_Store files in this folder"
 ## 📜 License
 
 MIT License
-
----
-
-## 🤖 Credits
-
-Powered by [Pydantic AI](https://github.com/ltubio/pydantic-ai)  
-Terminal magic via [Rich](https://github.com/Textualize/rich)  
-Built by [Ricardo Borges](https://github.com/ricardoborges) ☕
