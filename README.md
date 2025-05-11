@@ -1,6 +1,6 @@
 # 🐧 Lzy – Natural Language to Bash CLI
 
-**Lzy** is a command-line tool that uses AI to translate natural language into safe Linux bash commands, explains what the command does, and lets you choose whether to run, edit, or abort the execution.
+**Lzy** is a command-line tool that uses AI to translate natural language into Linux bash commands, explains what the command does, and lets you choose whether to run, edit, or abort the execution.
 
 ---
 
