@@ -1,0 +1,4 @@
+pydantic
+pydantic-ai
+python-dotenv
+rich
