@@ -32,7 +32,7 @@ Lzy uses environment variables to configure the AI provider and its correspondin
 
 | Variable           | Description                                          |
 |--------------------|------------------------------------------------------|
-| `CLI_PROVIDER`     | Which provider to use: `gemini`, `openai`, `together`, or `nvidia` |
+| `CLI_PROVIDER`     | Which provider to use: `gemini`, `openai`, `together`,... |
 | `*_API_KEY`        | The API key for the chosen provider (see below)      |
 
 ### Supported Providers
@@ -43,6 +43,9 @@ Lzy uses environment variables to configure the AI provider and its correspondin
 | `openai`     | `OPENAI_API_KEY`       |
 | `together`   | `TOGETHER_API_KEY`     |
 | `nvidia`     | `NVIDIA_API_KEY`       |
+| `anthropic`   | `ANTHROPIC_API_KEY`   |
+| `groq`        | `GROQ_API_KEY`        |
+| `mistral`     | `MISTRAL_API_KEY`     |
 
 ### Optional
 

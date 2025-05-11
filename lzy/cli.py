@@ -1,4 +1,3 @@
-from pydantic import BaseModel
 from pydantic_ai import Agent
 from dotenv import load_dotenv
 from rich.table import Table
@@ -7,19 +6,14 @@ import sys
 import subprocess
 import json
 import argparse
-import os  # Import necessário para acessar variáveis de ambiente
-
+import os  
+from lzy.domain import BashCommand
+from lzy.agent_builder import AgentBuilder
 
 from rich.box import SIMPLE_HEAVY
 
 load_dotenv()
 console = Console()
-
-class BashCommand(BaseModel):
-    command: str
-    description: str
-
-
 
 def print_bash_table(command: str, description: str):
     table = Table(
@@ -36,16 +30,9 @@ def print_bash_table(command: str, description: str):
     console.print(table)
 
 def handle_command(prompt: str):
-    agent = Agent(
-        'google-gla:gemini-1.5-flash', 
-        output_type=BashCommand,
-        system_prompt=(
-            'You are a helpful assistant that translates natural language commands into linux bash commands. '
-            'Your response will be used in a bash script, so be careful with the syntax. '
-            'Also provide a description of the command in natural language.'
-        )
-    )    
-    console.print("🔎 [bold cyan]Wait...[/bold cyan]")
+    provider = os.getenv("CLI_PROVIDER")
+    agent = AgentBuilder(provider).build_agent()
+    console.print(f"[{provider}] 🔎 [bold cyan]Wait...[/bold cyan]")
     
     response = agent.run_sync(prompt)
     result = json.loads(response.output.model_dump_json())
@@ -66,7 +53,7 @@ def main():
     cli_provider = os.getenv("CLI_PROVIDER")
     if not cli_provider:
         console.print("❌ [bold red]Error:[/bold red] The environment variable [bold cyan]CLI_PROVIDER[/bold cyan] is not set.")
-        console.print("Available options: [bold yellow]Gemini, Together, Openai, NVidia[/bold yellow].")
+        console.print("Available options: [bold yellow]Gemini, Together, Openai, Nvidia, Anthropic, Groq, Mistral[/bold yellow].")
         sys.exit(1)
 
     # Verifica se a variável de ambiente correspondente à API key do provider está definida
@@ -87,15 +74,24 @@ def main():
         cli_api_key = os.getenv("NVIDIA_API_KEY")
         if not cli_api_key:
             console.print("❌ [bold red]Error:[/bold red] The environment variable [bold cyan]NVIDIA_API_KEY[/bold cyan] is not set.")
+    elif cli_provider.lower() == "anthropic":
+        cli_api_key = os.getenv("ANTHROPIC_API_KEY")
+        if not cli_api_key:
+            console.print("❌ [bold red]Error:[/bold red] The environment variable [bold cyan]ANTHROPIC_API_KEY[/bold cyan] is not set.")
+    elif cli_provider.lower() == "groq":
+        cli_api_key = os.getenv("GROQ_API_KEY")
+        if not cli_api_key:
+            console.print("❌ [bold red]Error:[/bold red] The environment variable [bold cyan]GROQ_API_KEY[/bold cyan] is not set.")
+    elif cli_provider.lower() == "mistral":
+        cli_api_key = os.getenv("MISTRAL_API_KEY")
+        if not cli_api_key:
+            console.print("❌ [bold red]Error:[/bold red] The environment variable [bold cyan]MISTRAL_API_KEY[/bold cyan] is not set.")
     else:
         console.print(f"❌ [bold red]Error:[/bold red] Unknown provider [bold cyan]{cli_provider}[/bold cyan].")
-        console.print("Available options: [bold yellow]Gemini, Together, Openai, NVidia[/bold yellow].")
+        console.print("Available options: [bold yellow]Gemini, Together, Openai, Nvidia, Anthropic, Groq, Mistral[/bold yellow].")
         sys.exit(1)
 
     if not cli_api_key:
-        sys.exit(1)
-
-    if not cli_provider or not cli_api_key:
         sys.exit(1)
 
     parser = argparse.ArgumentParser(
