@@ -14,6 +14,14 @@
 
 ---
 
+## 🎥 Demo
+
+[![Watch the demo](https://img.youtube.com/vi/W9jMvZKNo4M/0.jpg)](https://www.youtube.com/watch?v=W9jMvZKNo4M)
+
+Click the image above or [watch on YouTube](https://www.youtube.com/watch?v=W9jMvZKNo4M).
+
+---
+
 ## 🚀 Installation
 
 ```bash
