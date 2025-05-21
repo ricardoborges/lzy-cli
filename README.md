@@ -25,9 +25,7 @@ Click the image above or [watch on YouTube](https://www.youtube.com/watch?v=W9jM
 ## 🚀 Installation
 
 ```bash
-git clone https://github.com/ricardoborges/lzy-cli.git
-cd lzy-cli
-pip install -e .
+pip install lzy
 ```
 
 ---

@@ -1,11 +1,28 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "lzy"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0.0"
+description = "Translate natural language commands into Linux bash commands."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.7"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Ricardo Borges", email = "ricardoborges@gmail.com"}
+]
 dependencies = [
     "pydantic>=2.11.4",
     "pydantic-ai>=0.1.11",
-    "setuptools>=80.4.0",
+    "python-dotenv",
+    "rich"
 ]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.scripts]
+lzy = "lzy.cli:main"
