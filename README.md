@@ -98,7 +98,7 @@ Then you're prompted to choose:
 You can also run directly via Python for debugging:
 
 ```bash
-python lzy/cli.py "delete all .DS_Store files in this folder"
+python lzy/cli.py delete all .DS_Store files in this folder
 ```
 
 ---
