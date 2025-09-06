@@ -25,7 +25,7 @@ Click the image above or [watch on YouTube](https://www.youtube.com/watch?v=W9jM
 ## 🚀 Installation
 
 ```bash
-pip install lzy
+pip install lzycli
 ```
 
 ---
