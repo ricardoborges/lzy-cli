@@ -71,7 +71,7 @@ GEMINI_API_KEY=your_google_api_key_here
 ## 🧪 Usage
 
 ```bash
-lzy "find all PDF files in the current directory"
+lzy find all PDF files in the current directory
 ```
 
 You’ll get a result like this:
