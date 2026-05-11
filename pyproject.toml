@@ -3,7 +3,7 @@ requires = ["setuptools>=80", "setuptools-scm[toml]>=8", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "lzy"
+name = "lzycli"
 dynamic = ["version"]
 description = "Translate natural language commands into Linux bash commands."
 readme = "README.md"

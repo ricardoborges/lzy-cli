@@ -26,7 +26,7 @@ Click the image above or [watch on YouTube](https://www.youtube.com/watch?v=W9jM
 ## 🚀 Installation
 
 ```bash
-pip install lzy
+pip install lzycli
 ```
 
 ---
@@ -135,7 +135,7 @@ This repository is configured to publish distributions through GitHub Actions us
   - Repository: `lzy-cli`
   - Workflow file: `publish-to-pypi.yml`
   - Environment: `testpypi`
-  - Project name: `lzy`
+  - Project name: `lzycli`
 4. In PyPI, add the same trusted publisher, but use environment `pypi`.
 
 ### Release flow
