@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=80", "setuptools-scm[toml]>=8", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "lzy"
-version = "1.0.0"
+dynamic = ["version"]
 description = "Translate natural language commands into Linux bash commands."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -12,6 +12,7 @@ license = {file = "LICENSE"}
 authors = [
     {name = "Ricardo Borges", email = "ricardoborges@gmail.com"}
 ]
+keywords = ["ai", "bash", "cli", "linux", "nlp", "terminal"]
 dependencies = [
     "pydantic>=2.11.4",
     "pydantic-ai>=0.1.11",
@@ -24,5 +25,13 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+[project.urls]
+Homepage = "https://github.com/ricardoborges/lzy-cli"
+Repository = "https://github.com/ricardoborges/lzy-cli"
+Issues = "https://github.com/ricardoborges/lzy-cli/issues"
+
 [project.scripts]
 lzy = "lzy.cli:main"
+
+[tool.setuptools_scm]
+local_scheme = "no-local-version"

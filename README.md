@@ -26,7 +26,7 @@ Click the image above or [watch on YouTube](https://www.youtube.com/watch?v=W9jM
 ## 🚀 Installation
 
 ```bash
-pip install lzycli
+pip install lzy
 ```
 
 ---
@@ -118,6 +118,40 @@ You can also run directly via Python for debugging:
 
 ```bash
 python lzy/cli.py delete all .DS_Store files in this folder
+```
+
+---
+
+## 📦 Publishing
+
+This repository is configured to publish distributions through GitHub Actions using PyPI Trusted Publishing.
+
+### One-time setup
+
+1. Create the GitHub environments `testpypi` and `pypi` in the repository settings.
+2. Require manual approval for the `pypi` environment.
+3. In TestPyPI, add a trusted publisher with:
+  - Owner: `ricardoborges`
+  - Repository: `lzy-cli`
+  - Workflow file: `publish-to-pypi.yml`
+  - Environment: `testpypi`
+  - Project name: `lzy`
+4. In PyPI, add the same trusted publisher, but use environment `pypi`.
+
+### Release flow
+
+- Package versions now come from Git tags via `setuptools-scm`.
+- Create and push the release tag you want to publish, such as `v1.0.1`.
+- Pushes to `main` publish the current build to TestPyPI.
+- Tags matching `v*` publish the tagged build to PyPI.
+
+If this repository does not yet have a Git tag for the already published `1.0.0` release, create one on the matching commit before relying on automatic versioning. Otherwise, `setuptools-scm` will derive a development version from repository history instead.
+
+Example release:
+
+```bash
+git tag v1.0.1
+git push origin main --tags
 ```
 
 ---
