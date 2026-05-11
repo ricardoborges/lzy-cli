@@ -9,7 +9,8 @@
 - 🔁 Translates natural language into valid Bash commands.
 - 📘 Explains each command in natural language.
 - 🛠️ Lets you review or edit the command before execution.
-- 🔐 Works with multiple AI providers.
+- 🔐 Works with multiple AI providers, including local **Ollama** models.
+- 🧙 First-run interactive setup wizard — no env vars required.
 - 🎨 Fancy terminal output with `rich`.
 
 ---
@@ -30,41 +31,57 @@ pip install lzycli
 
 ---
 
-## 🔧 Environment Variables
+## 🔧 Configuration
 
-Lzy uses environment variables to configure the AI provider and its corresponding API key.
+The first time you run `lzy`, an interactive wizard will guide you through:
 
-### Required
+1. Choosing an AI provider.
+2. Entering your API key (typed characters are masked with `*` for shoulder-surfing safety).
+3. For **Ollama**, picking the host (default `http://localhost:11434`) and selecting one of the locally installed models — no API key needed.
 
-| Variable           | Description                                          |
-|--------------------|------------------------------------------------------|
-| `CLI_PROVIDER`     | Which provider to use: `gemini`, `openai`, `together`,... |
-| `*_API_KEY`        | The API key for the chosen provider (see below)      |
+Your selection is saved to `~/.lzy/config.json` (chmod `600` on Unix) and used on every subsequent run.
+
+To reconfigure at any time:
+
+```bash
+lzy --setup
+```
+
+### Example `~/.lzy/config.json`
+
+For a cloud provider (API key based):
+
+```json
+{
+  "provider": "openai",
+  "api_key": "sk-your-api-key-here"
+}
+```
+
+For Ollama (local, no API key):
+
+```json
+{
+  "provider": "ollama",
+  "host": "http://localhost:11434",
+  "model": "llama3.2"
+}
+```
 
 ### Supported Providers
 
-| CLI_PROVIDER | Required Variable      |
-|--------------|------------------------|
-| `gemini`     | `GEMINI_API_KEY`       |
-| `openai`     | `OPENAI_API_KEY`       |
-| `together`   | `TOGETHER_API_KEY`     |
-| `nvidia`     | `NVIDIA_API_KEY`       |
-| `anthropic`   | `ANTHROPIC_API_KEY`   |
-| `groq`        | `GROQ_API_KEY`        |
-| `mistral`     | `MISTRAL_API_KEY`     |
+| Provider    | Type        |
+|-------------|-------------|
+| `openai`    | API key     |
+| `anthropic` | API key     |
+| `gemini`    | API key     |
+| `groq`      | API key     |
+| `mistral`   | API key     |
+| `together`  | API key     |
+| `nvidia`    | API key     |
+| `ollama`    | local (no API key) |
 
-### Optional
-
-| Variable           | Description                              |
-|--------------------|------------------------------------------|
-| `.env` file        | You can use a `.env` file to load variables automatically (via `python-dotenv`) |
-
-### Example `.env` file:
-
-```env
-CLI_PROVIDER=gemini
-GEMINI_API_KEY=your_google_api_key_here
-```
+> **Ollama:** make sure `ollama serve` is running and you have pulled at least one model (e.g. `ollama pull llama3.2`) before running the setup.
 
 ---
 
@@ -73,6 +90,8 @@ GEMINI_API_KEY=your_google_api_key_here
 ```bash
 lzy find all PDF files in the current directory
 ```
+
+If no provider is configured yet, the setup wizard runs automatically.
 
 You’ll get a result like this:
 

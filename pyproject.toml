@@ -7,7 +7,7 @@ name = "lzy"
 version = "1.0.0"
 description = "Translate natural language commands into Linux bash commands."
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 license = {file = "LICENSE"}
 authors = [
     {name = "Ricardo Borges", email = "ricardoborges@gmail.com"}
